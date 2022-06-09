@@ -4,11 +4,7 @@ set -euo pipefail
 source $(dirname $0)/var.sh
 
 LIB_PATH=third_party/libvpx
-
-if [[ "$FFMPEG_ST" == "yes" ]]; then
-  EXTRA_CONF_FLAGS="--disable-multithread"
-fi
-
+FLAGS="-c -s USE_PTHREADS=1 $OPTIM_FLAGS"
 CONF_FLAGS=(
   --prefix=$BUILD_DIR                                # install library in a build directory for FFmpeg to include
   --target=generic-gnu                               # target with miminal features
@@ -18,11 +14,10 @@ CONF_FLAGS=(
   --disable-docs                                     # not to build docs
   --disable-unit-tests                               # not to do unit tests
   --disable-dependency-tracking                      # speed up one-time build
-  --extra-cflags="$CFLAGS"                           # flags to use pthread and code optimization
-  --extra-cxxflags="$CXXFLAGS"                       # flags to use pthread and code optimization
-  ${EXTRA_CONF_FLAGS-}
+  --extra-cflags="$FLAGS"                            # flags to use pthread and code optimization
+  --extra-cxxflags="$FLAGS"                          # flags to use pthread and code optimization
 )
 echo "CONF_FLAGS=${CONF_FLAGS[@]}"
-(cd $LIB_PATH && emconfigure ./configure "${CONF_FLAGS[@]}")
-emmake make -C $LIB_PATH clean
+(cd $LIB_PATH && LDFLAGS="$FLAGS" STRIP="llvm-strip" emconfigure ./configure "${CONF_FLAGS[@]}")
 emmake make -C $LIB_PATH install -j
+emmake make -C $LIB_PATH clean

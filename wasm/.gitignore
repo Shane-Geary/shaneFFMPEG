@@ -1,3 +1,4 @@
-/cache
+/examples/*.mp4
 /node_modules
-!*.pc
+/dist
+/cache
