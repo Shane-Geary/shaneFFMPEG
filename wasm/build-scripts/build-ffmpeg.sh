@@ -10,6 +10,10 @@ if [[ "$FFMPEG_ST" != "yes" ]]; then
     -s USE_PTHREADS=1                             # enable pthreads support
     -s PROXY_TO_PTHREAD=1                         # detach main() from browser/UI main thread
     -o wasm/packages/core/dist/ffmpeg-core.js
+
+    -s INITIAL_MEMORY=536608768
+    -s ALLOW_MEMORY_GROWTH=1
+    -s ASSERTIONS=1
   )
 else
   mkdir -p wasm/packages/core-st/dist
