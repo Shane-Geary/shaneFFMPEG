@@ -1,7 +1,7 @@
 {
-  "name": "shaneffmpegv3",
+  "name": "shaneffmpeg",
   "version": "1.0.0",
-  "description": "V3 ",
+  "description": "Tester for mobile capabilities with ffmpeg",
   "main": "index.js",
   "directories": {
     "doc": "doc",
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shane-Geary/ffmpeg.wasm-core.git"
+    "url": "git+https://github.com/Shane-Geary/shaneFFMPEG.git"
   },
   "author": "Shane-Geary",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Shane-Geary/ffmpeg.wasm-core/issues"
+    "url": "https://github.com/Shane-Geary/shaneFFMPEG/issues"
   },
-  "homepage": "https://github.com/Shane-Geary/ffmpeg.wasm-core#readme"
+  "homepage": "https://github.com/Shane-Geary/shaneFFMPEG#readme"
 }
